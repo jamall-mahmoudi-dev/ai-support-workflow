@@ -9,7 +9,9 @@ import os
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="AI Support Workflow API")
-
+@app.get("/")
+def root():
+    return {"status": "FastAPI is running", "service": "backend"}
 def get_db():
     db = SessionLocal()
     try:
