@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Webhook to FastAPI",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "incoming-message"
+        },
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1,
+        "position": [250, 300]
+      },
+      {
+        "parameters": {
+          "url": "http://backend:8000/webhook/message",
+          "options": {}
+        },
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 1,
+        "position": [500, 300]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [[{"node": "HTTP Request", "type": "main", "index": 0}]]
+      }
+    ],
+    "active": false
+  }
+]
