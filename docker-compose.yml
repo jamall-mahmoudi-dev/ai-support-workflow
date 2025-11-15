@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   postgres:
-    image: postgres:15
+    image: postgres:17
     restart: always
     environment:
       POSTGRES_USER: "${POSTGRES_USER:-appuser}"
@@ -55,8 +55,8 @@ services:
       - ai-net
 
   flower:
-    image: mher/flower:1.0.0
-    command: flower --broker=redis://redis:6379/0 --address=0.0.0.0 --port=5555
+    image: mher/flower:latest
+    command: celery --broker=redis://redis:6379/0 flower --address=0.0.0.0 --port=5555
     ports:
       - "5555:5555"
     depends_on:
